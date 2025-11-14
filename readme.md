@@ -17,6 +17,10 @@ python manage.py runserver
 python manage.py test -v 3
 ```
 
+## 🏠 Homepage
+
+`http://127.0.0.1:8000/api/`
+
 ## 🔐 Authentication
 
 ### **Auth Endpoints**
