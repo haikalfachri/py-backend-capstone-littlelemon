@@ -21,7 +21,7 @@ class MenuViewSet(generics.ListCreateAPIView):
 
         return [permission for permission in permission_classes]
         
-class MenuDetailViewSet(generics.RetrieveUpdateDestroyAPIView):
+class SingleMenuViewSet(generics.RetrieveUpdateDestroyAPIView):
     queryset = Menu.objects.all()
     serializer_class = MenuSerializer
 
@@ -38,10 +38,21 @@ class BookingViewSet(generics.ListCreateAPIView):
     serializer_class = BookingSerializer
 
     def get_permissions(self):
-        permission_classes = []
-        # GET requests → allow any authenticated user
-        if self.request.method != 'GET' and self.request.method != 'POST':
+        if self.request.method == 'POST':
             permission_classes = [IsAuthenticated()]
+        else:
+            permission_classes = [IsAdminUser()]
+            
+        return [permission for permission in permission_classes]   
 
-        # Other methods → admin only
-        return [permission for permission in permission_classes]
+class SingleBookingViewSet(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Booking.objects.all()
+    serializer_class = BookingSerializer
+
+    def get_permissions(self):
+        if self.request.method == 'GET':
+            permission_classes = [IsAuthenticated()]
+        else:
+            permission_classes = [IsAdminUser()]
+            
+        return [permission for permission in permission_classes]   
