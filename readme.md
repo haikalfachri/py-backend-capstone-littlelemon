@@ -10,6 +10,7 @@ python -m pipenv install django djangorestframework djoser mysqlclient
 python -m pipenv shell
 django-admin startproject <<littlelemon>> .
 python manage.py startapp <<restaurant>>
+python manage.py createsuperuser
 python manage.py makemigrations
 python manage.py migrate
 python manage.py runserver
