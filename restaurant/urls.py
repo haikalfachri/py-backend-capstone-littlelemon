@@ -7,4 +7,5 @@ urlpatterns = [
     path('menu/<int:pk>/', views.SingleMenuViewSet.as_view(), name='menu-detail'),
     path('bookings/', views.BookingViewSet.as_view(), name='booking'),
     path('bookings/<int:pk>/', views.SingleBookingViewSet.as_view(), name='booking'),
+    path('bookings/history/', views.UserBookingHistoryView.as_view(), name='booking-history'),
 ]

@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Menu(models.Model):
@@ -10,6 +11,7 @@ class Menu(models.Model):
         return f'{self.title} : {str(self.price)}'
 
 class Booking(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='bookings', null=True, blank=True)
     customer_name = models.CharField(max_length=100)
     customer_email = models.EmailField()
     booking_date = models.DateTimeField()

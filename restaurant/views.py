@@ -43,16 +43,19 @@ class BookingViewSet(generics.ListCreateAPIView):
         else:
             permission_classes = [IsAdminUser()]
             
-        return [permission for permission in permission_classes]   
+        return [permission for permission in permission_classes] 
+    
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)  
 
-class SingleBookingViewSet(generics.RetrieveUpdateDestroyAPIView):
+class SingleBookingViewSet(generics.UpdateAPIView, generics.DestroyAPIView):
     queryset = Booking.objects.all()
     serializer_class = BookingSerializer
+    permission_classes = [IsAdminUser]
+    
+class UserBookingHistoryView(generics.ListAPIView):
+    serializer_class = BookingSerializer
+    permission_classes = [IsAuthenticated]
 
-    def get_permissions(self):
-        if self.request.method == 'GET':
-            permission_classes = [IsAuthenticated()]
-        else:
-            permission_classes = [IsAdminUser()]
-            
-        return [permission for permission in permission_classes]   
+    def get_queryset(self):
+        return Booking.objects.filter(user=self.request.user).order_by('-booking_date')
