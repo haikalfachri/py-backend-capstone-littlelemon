@@ -38,8 +38,8 @@ python manage.py test -v 3
 
 | Method | Endpoint | Description | Auth Required |
 |--------|----------|-------------|---------------|
-| GET | `/menu/` | Get all menu items | ❌ No |
-| GET | `/menu/<id>/` | Get single menu item | ❌ No |
+| GET | `/api/menu/` | Get all menu items | ❌ No |
+| GET | `/api/menu/<id>/` | Get single menu item | ❌ No |
 
 ---
 
@@ -47,7 +47,7 @@ python manage.py test -v 3
 
 | Method | Endpoint | Description | Auth Required | Request Body |
 |--------|----------|-------------|---------------|--------------|
-| POST | `/bookings/` | Create a new booking | ✔ Yes (User) | `{ "customer_name": "", "customer_email": "", "booking_date": "", "number_of_people": 0 }` |
+| POST | `/api/bookings/` | Create a new booking | ✔ Yes (User) | `{ "customer_name": "", "customer_email": "", "booking_date": "", "number_of_people": 0 }` |
 | GET | `/bookings/history/` | Get user's booking history based on user token | ✔ Yes (User) | None |
 
 ---
@@ -58,11 +58,11 @@ python manage.py test -v 3
 
 | Method | Endpoint | Description | Auth Required | Request Body |
 |--------|----------|-------------|---------------|--------------|
-| POST | `/menu/` | Create a menu item | ✔ Admin | `{ "title": "", "price": 0, "description": "" }` |
-| GET | `/menu/` | List all menu items | ❌ Public | - |
-| GET | `/menu/<id>/` | Get single menu item | ❌ Public | - |
-| PATCH | `/menu/<id>/` | Update menu item | ✔ Admin | (Partial fields)`{ "title": "", "price": 0, "description": "" }` |
-| DELETE | `/menu/<id>/` | Delete menu item | ✔ Admin | - |
+| POST | `/api/menu/` | Create a menu item | ✔ Admin | `{ "title": "", "price": 0, "description": "" }` |
+| GET | `/api/menu/` | List all menu items | ❌ Public | - |
+| GET | `/api/menu/<id>/` | Get single menu item | ❌ Public | - |
+| PATCH | `/api/menu/<id>/` | Update menu item | ✔ Admin | (Partial fields)`{ "title": "", "price": 0, "description": "" }` |
+| DELETE | `/api/menu/<id>/` | Delete menu item | ✔ Admin | - |
 
 ---
 
@@ -70,10 +70,10 @@ python manage.py test -v 3
 
 | Method | Endpoint | Description | Auth Required | Request Body |
 |--------|----------|-------------|---------------|--------------|
-| GET | `/bookings/` | Get all bookings | ✔ Admin | - |
-| GET | `/bookings/<id>/` | Get single booking | ✔ Admin | - |
-| PATCH | `/bookings/<id>/` | Update booking | ✔ Admin | (Partial fields) `"customer_name": "", "customer_email": "", "booking_date": "", "number_of_people": 0 }`  |
-| DELETE | `/bookings/<id>/` | Delete booking | ✔ Admin | - |
+| GET | `/api/bookings/` | Get all bookings | ✔ Admin | - |
+| GET | `/api/bookings/<id>/` | Get single booking | ✔ Admin | - |
+| PATCH | `/api/bookings/<id>/` | Update booking | ✔ Admin | (Partial fields) `"customer_name": "", "customer_email": "", "booking_date": "", "number_of_people": 0 }`  |
+| DELETE | `/api/bookings/<id>/` | Delete booking | ✔ Admin | - |
 
 ---
 
